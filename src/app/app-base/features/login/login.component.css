@@ -1,0 +1,7 @@
+.login-card {
+  background-color: white;
+  border: 1px solid grey;
+  padding: 35px;
+  border-radius: 8px;
+  max-width: 440px;
+}

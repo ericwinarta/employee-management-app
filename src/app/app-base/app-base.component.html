@@ -1,0 +1,9 @@
+<div class="container-fluid g-0">
+  <app-header (isMenuOpen)="sidebarStatus = $event"></app-header>
+  <main>
+    <app-sidebar [openingSidebar]="sidebarStatus" [class]="{'app-sidebar-open' : sidebarStatus}"></app-sidebar>
+    <div class="display-area">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,134 @@
+<div class="container-fluid ">
+	<div class="row">
+		<div class="col-12 mt-3 mb-3">
+			<h4>{{formMode}} Employee</h4>
+		</div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control" [formControl]="getform('username')">
+            <div *ngIf="getform('username').invalid && (getform('username').dirty || getform('username').touched)" class="text-danger">
+              <div *ngIf="getform('username').errors?.['required']">Username is required</div>
+              <div *ngIf="getform('username').errors?.['minlength']">Username must be 3 characters or more</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" class="form-control" [formControl]="getform('email')">
+            <div *ngIf="getform('email').invalid && (getform('email').dirty || getform('email').touched)" class="text-danger">
+              <div *ngIf="getform('email').errors?.['required']">Email is required</div>
+              <div *ngIf="getform('email').errors?.['pattern']">Please enter a valid email address</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" class="form-control" [formControl]="getform('firstName')">
+            <div *ngIf="getform('firstName').invalid && (getform('firstName').dirty || getform('firstName').touched)" class="text-danger">
+              <div *ngIf="getform('firstName').errors?.['required']">First Name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" class="form-control" [formControl]="getform('lastName')">
+            <div *ngIf="getform('lastName').invalid && (getform('lastName').dirty || getform('lastName').touched)" class="text-danger">
+              <div *ngIf="getform('lastName').errors?.['required']">Last Name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="lastName">Birthdate</label>
+            <div class="input-group">
+              <input class="form-control" name="dp" [readonly]="true" [formControl]="getform('birthdate')" [maxDate]="maxDate" ngbDatepicker #birthdateCalendar="ngbDatepicker"/>
+              <button class="btn btn-outline-secondary bi bi-calendar" (click)="birthdateCalendar.toggle()" type="button"></button>
+            </div>
+            <div *ngIf="getform('birthdate').invalid && (getform('birthdate').dirty || getform('birthdate').touched)" class="text-danger">
+              <div *ngIf="getform('birthdate').errors?.['required']">Birthdate is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="basicSalary">Basic Salary</label>
+            <ng-container *ngIf="formMode !== 'Detail'; else inputAdd">
+              <input type="number" id="basicSalary" class="form-control" [formControl]="getform('basicSalary')">
+            </ng-container>
+            <ng-template  #inputAdd>
+              <input type="text" id="basicSalary" class="form-control" [formControl]="getform('basicSalary')">
+            </ng-template>
+            <div *ngIf="getform('basicSalary').invalid && (getform('basicSalary').dirty || getform('basicSalary').touched)" class="text-danger">
+              <div *ngIf="getform('basicSalary').errors?.['required']">Basic Salary is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" id="status" class="form-control" [formControl]="getform('status')">
+            <div *ngIf="getform('status').invalid && (getform('status').dirty || getform('status').touched)" class="text-danger">
+              <div *ngIf="getform('status').errors?.['required']">Status is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="status">Group</label>
+            <ng-select [items]="groupItems"
+              bindLabel="name"
+              placeholder="Search for an item"
+              [formControl]="getform('group')">
+            </ng-select>
+            <div *ngIf="getform('group').invalid && (getform('group').dirty || getform('group').touched)" class="text-danger">
+              <div *ngIf="getform('group').errors?.['required']">Basic Salary is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="lastName">Description</label>
+            <div class="input-group">
+              <input class="form-control" name="dp" [readonly]="true" [formControl]="getform('description')" [maxDate]="maxDate" ngbDatepicker #descriptionCalendar="ngbDatepicker"/>
+              <button class="btn btn-outline-secondary bi bi-calendar" (click)="descriptionCalendar.toggle()" type="button"></button>
+            </div>
+            <div *ngIf="getform('description').invalid && (getform('description').dirty || getform('description').touched)" class="text-danger">
+              <div *ngIf="getform('description').errors?.['required']">Description is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mb-3 mb-md-0">
+      <div class="row d-flex justify-content-end">
+        <div class="col-12 col-md-6">
+          <div class="row d-flex justify-content-end">
+            <div class="col-12 col-md-6">
+              <div class="d-grid gap-2">
+                <button class="btn btn-outline-secondary" (click)="navigateToList()">
+                  <ng-container *ngIf="formMode === 'Detail'; else cancelButton">
+                    OK
+                  </ng-container>
+                  <ng-template #cancelButton>
+                    Cancel
+                  </ng-template>
+                </button>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 mt-3 mt-md-0" *ngIf="formMode !== 'Detail'">
+              <div class="d-grid gap-2">
+                <button class="btn btn-primary" (click)="submitData()" [disabled]="employeeForm.invalid">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	</div>
+</div>

@@ -1,0 +1,39 @@
+.side-nav-content {
+  width: 230px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.nav-list {
+  list-style: none;
+  height: 100%;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-list-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  .nav-title {
+      margin-left: 2rem;
+  }
+}
+
+.nav-list-item:hover {
+  /* background-color: rgba(255,255,255,0.7); */
+  background-color: #DDDDDD;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 767px) {
+  
+}

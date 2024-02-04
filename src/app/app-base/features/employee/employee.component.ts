@@ -143,11 +143,6 @@ export class EmployeeComponent implements OnInit {
     this.emailFc.setValue(this.employeeSvc.filterData.searchByEmail);
   }
 
-  /* resetFilter(): void {
-    this.usernameFc.setValue(this.employeeSvc.filterData.searchByUsername);
-    this.emailFc.setValue(this.employeeSvc.filterData.searchByEmail);
-  } */
-
   deleteEmployee(username: string): void {
     alert('Data deleted successfully');
     this.employeeSvc.deleteEmployeeData(username);
